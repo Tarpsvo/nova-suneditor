@@ -20,7 +20,7 @@ class FieldAttachmentController extends Controller
             ->filter(function ($field) {
                 return optional($field)->withFiles === true;
             })
-            ->findFieldByAttribute($request->field, function () {
+            ->findFieldByAttribute(str($request->field)->beforeLast('.')->value(), function () {
                 abort(404);
             });
 
